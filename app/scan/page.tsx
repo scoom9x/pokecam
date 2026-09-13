@@ -13,7 +13,9 @@ export default function Scan() {
     const [response, setResponse] = useState<string | null>(null)
 
     const direction = {
-        facingMode: {ideal: 'environment'}
+        facingMode: {ideal: 'environment'},
+        width: {ideal: 1920},
+        height: {ideal: 1080}
     }
 
     async function takePicture() {
