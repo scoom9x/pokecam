@@ -19,6 +19,7 @@ export default function Scan() {
     }
 
     async function takePicture() {
+        navigator.vibrate?.(50)
         const screenshot = webcamRef.current?.getScreenshot()
 
         if (screenshot) {
@@ -51,7 +52,7 @@ export default function Scan() {
                 screenshotQuality={1}
                 screenshotFormat="image/jpeg" /> : <img className='w-full h-full object-cover' src={image} />}
             <h1>{response}</h1>
-            <button className="absolute absolute bottom-5" onClick={takePicture}><img className='w-18' src="pokeball.webp" /></button>
+            <button className="absolute absolute bottom-5 transition-all duration-50 ease-linear hover:scale-90" onClick={takePicture}><img className='w-18' src="pokeball.webp" /></button>
         </div>
     )
 }
