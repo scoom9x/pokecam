@@ -26,7 +26,7 @@ export default function Scan() {
             const formData = new FormData()
             formData.append("image", blob, "card.jpg")
 
-            const result = await fetch("http://127.0.0.1:5000/scan", {
+            const result = await fetch("https://luminance-extras-oyster.ngrok-free.dev/scan", {
                 method: 'post',
                 body: formData
             })
