@@ -30,19 +30,24 @@ export default function Scan() {
         }
     }
 
+    function retake() {
+        setImage(null)
+    }
+
     return (
         <div className='h-screen w-screen flex flex-col items-center justify-center overflow-hidden'>
-            {!image ? <Centering/>:null}
-            {!image ? <Webcam
-                className="w-full h-full object-cover"
+            {!image ? <Centering /> : null}
+            {!image ? <><Webcam
+                className="object-contain w-full h-full"
                 ref={webcamRef}
                 audio={false}
                 videoConstraints={videoConstraints}
                 onUserMedia={() => console.log("camera opened")}
                 onUserMediaError={(error) => console.log("big error", error)}
                 screenshotQuality={1}
-                screenshotFormat="image/jpeg" /> : <ResultUI blob = {image}/>}
-            <button className="absolute absolute bottom-5 transition-all duration-50 ease-linear active:scale-90" onClick={takePicture}><img className='w-18' src="pokeball.webp" /></button>
+                screenshotFormat="image/jpeg" />
+                <button className="absolute bottom-5 transition-all duration-50 ease-linear active:scale-90" onClick={takePicture}><img className='w-18' src="pokeball.webp" /></button>
+            </> : <ResultUI blob={image} retake={retake} />}
         </div>
     )
 }

@@ -3,13 +3,14 @@ import { useState } from 'react'
 
 interface Data {
     blob: Blob,
-    className?: null | string
+    className?: null | string,
+    retake: any
 }
 
 type screen = "preview" | "loading" | "result"
 
 
-export default function Pokedex({ blob, className }: Data) {
+export default function Pokedex({ blob, className, retake }: Data) {
     const [page, setPage] = useState<screen>("preview")
     const [data, setData] = useState<object[]>([])
     const [errorMessage, setErrorMessage] = useState<null | string>(null)
@@ -46,10 +47,10 @@ export default function Pokedex({ blob, className }: Data) {
                 <div className='w-60 h-80 overflow-hidden flex items-center justify-center bg-[#dedede] rounded-[20px] absolute top-1/5 -translate-y-1/5'>
                     <div className='absolute top-[9px] left-[40%] bg-[#dc092a] rounded-[50%] w-2 h-2 border border-black' />
                     <div className='absolute top-[9px] left-[59%] bg-[#dc092a] rounded-[50%] w-2 h-2 border border-black' />
-                    <img className='w-[75%] h-[75%] object-cover scale-[110%]' src={URL.createObjectURL(blob)} />
+                    <img className='w-[75%] h-[75%] object-contain scale-[110%]' src={URL.createObjectURL(blob)} />
                 </div>
                 <div className='absolute bottom-30 flex gap-5'>
-                    <button className=' bg-[#2ba9fd] px-5 py-2 rounded-[10px] transition-all duration-50 ease-linear active:scale-[110%]'>Retake</button>
+                    <button className=' bg-[#2ba9fd] px-5 py-2 rounded-[10px] transition-all duration-50 ease-linear active:scale-[110%]' onClick={retake}>Retake</button>
                     <button className=' bg-[#2ba9fd] px-5 py-2 rounded-[10px] transition-all duration-50 ease-linear active:scale-[110%]' onClick={scan}>Scan</button>
                 </div>
                 <h1 className='absolute bottom-15'>
@@ -58,6 +59,7 @@ export default function Pokedex({ blob, className }: Data) {
 
             {page == 'loading' ? <>
                 <img className='absolute' src='loading.gif' />
+                <img className='absolute bottom-5 left-[15%]' src='running.gif'></img>
 
             </> : null}
 
