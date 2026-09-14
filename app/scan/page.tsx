@@ -35,7 +35,7 @@ export default function Scan() {
     }
 
     return (
-        <div className='h-screen w-screen flex flex-col items-center justify-center overflow-hidden'>
+        <div className='h-screen w-screen flex flex-col items-center justify-center overflow-hidden font-pokesolid'>
             {!image ? <Centering /> : null}
             {!image ? <><Webcam
                 className="object-contain w-full h-full"
