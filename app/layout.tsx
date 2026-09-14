@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Onest } from "next/font/google";
 import "./globals.css";
+import localFont from 'next/font/local'
+
+const pokeHollow = localFont({src:'../fonts/Hollow.ttf', variable:'--font-hollow'})
+const pokeSolid = localFont({src:'../fonts/Solid.ttf', variable: '--font-solid'})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${onest.variable} h-full antialiased`}
+      className={`${pokeHollow.variable} ${pokeSolid.variable}`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
